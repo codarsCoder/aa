@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Table Example</title>
+    <!-- React ve ReactDOM CDN'leri -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Babel CDN'i -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+<div id="root"></div>
+<div id="root2"></div>
+
+<script type="text/babel">
+    // API'den alınacak örnek veri
+    const sampleData = [
+        { id: 1, name: 'John', age: 25 },
+        { id: 2, name: 'Jane', age: 30 },
+        { id: 3, name: 'Doe', age: 28 },
+    ];
+
+    // Tablo bileşeni
+    // class Table extends React.Component {
+    //     render() {
+    //         const data = this.props.data;
+    //         return (
+    //             <table>
+    //                 <thead>
+    //                     <tr>
+    //                         <th>ID</th>
+    //                         <th>Name</th>
+    //                         <th>Age</th>
+    //                     </tr>
+    //                 </thead>
+    //                 <tbody>
+    //                     {/* Veri öğelerini tabloya ekleme */}
+    //                     {data.map(item => (
+    //                         <tr key={item.id}>
+    //                             <td>{item.id}</td>
+    //                             <td>{item.name}</td>
+    //                             <td>{item.age}</td>
+    //                         </tr>
+    //                     ))}
+    //                 </tbody>
+    //             </table>
+    //         );
+    //     }
+    // }
+    function Table( { data } ) {
+   
+    return (
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {/* Veri öğelerini tabloya ekleme */}
+                {data.map(item => (
+                    <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.name}</td>
+                        <td>{item.age}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    );
+}
+
+    // Ana bileşen
+    class App extends React.Component {
+        render() {
+            return (
+                <div>
+                    {/* Tablo bileşenini kullanma ve örnek veri ile doldurma */}
+                    <h1>Sample Table</h1>
+                    <Table data={sampleData} />
+                </div>
+            );
+        }
+    }
+
+    // React DOM ile bileşeni kök bileşene bağlama
+    ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+
+</body>
+</html>
